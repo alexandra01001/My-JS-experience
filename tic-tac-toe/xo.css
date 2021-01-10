@@ -1,0 +1,57 @@
+*{
+    font-family: Tahoma;
+}
+
+.square{
+    height: 100px;
+    width: 100px;
+    border: 2px solid #000;
+    display: inline-block;
+    margin: -2px;
+    padding: auto;
+    text-align: center;
+    line-height: 83px;
+    vertical-align: bottom;
+    font-size: 60px;
+}
+
+#game{
+    margin: 0 auto; 
+    width:320px;
+}
+
+#game:nth-child(1) {
+    border-style: none;
+}
+
+#start{
+    margin: 20px auto;
+    width:300px; 
+    height: 100px;
+    background-color: dodgerblue;
+    text-align: center;
+    color:floralwhite;
+    display: block;
+    font-size: 60px;
+    text-transform: uppercase;
+
+}
+
+#start:hover{
+    background-color: lightskyblue;
+    color: midnightblue;
+    transition: background-color .2s ease-in-out;
+
+}
+
+#start:active{
+    background-color: palevioletred;
+    color: pink;
+}
+
+#winMessage, #xWin, #oWin {
+    text-align: center;
+    color:steelblue;
+    font-size: 30px;
+    
+}

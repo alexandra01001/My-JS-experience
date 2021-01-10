@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="xo.css">
+    <title>Document</title>
+</head>
+<body>
+    <div id='game'>
+    <div class='square' data-id='0'></div>
+    <div class='square' data-id='1'></div>
+    <div class='square' data-id='2'></div> 
+    <div class='square' data-id='3'></div>
+    <div class='square' data-id='4'></div>
+    <div class='square' data-id='5'></div> 
+    <div class='square' data-id='6'></div>
+    <div class='square' data-id='7'></div>
+    <div class='square' data-id='8'></div>
+    </div>
+<div id='winMessage'></div>
+<div id='xWin'></div>
+<div id='oWin'></div>
+<button id='start'> заново </button>
+
+<script>
+    let win =[
+        [0,1,2],
+        [3,4,5],
+        [6,7,8],
+        [0,3,6],
+        [1,4,7],
+        [2,5,8],
+        [0,4,8],
+        [2,4,6],
+    ];
+    let xWin=document.getElementById('xWin');
+    let oWin=document.getElementById('oWin');
+    let start=document.getElementById('start');
+    let xlog=[];
+    let xWins=0;
+    let olog=[];
+    let oWins=0;
+    let popitka;
+    popitka=0;
+    let string;
+    let winMessage=document.getElementById('winMessage')
+    let squares=document.getElementsByClassName('square');
+
+    start.addEventListener('click', begin)
+
+
+    function begin(){
+
+        for (let i=0; i<squares.length; i++) {
+        squares[i].addEventListener('click', click)
+         }
+
+        for (let i=0; i<squares.length; i++){
+            squares[i].innerHTML=''
+            xlog=[];
+            olog=[];
+            popitka=0
+        }
+    }
+
+    for (let i=0; i<squares.length; i++) {
+        squares[i].addEventListener('click', click)
+        
+    }
+
+    
+    function click(){
+        if (this.innerHTML!=''){
+            alert('это поле занято!')
+        }
+
+        else if (popitka%2==0) {
+            this.innerHTML='X';
+            xlog[popitka/2]=+this.getAttribute('data-id');
+            popitka++;
+            if (foo(win, xlog))
+                 {string='крестики выиграли';
+                xWins++;
+                xWin.innerHTML=`крестики выиграли партий:${xWins}`;
+
+                for (let i=0; i<squares.length; i++) {
+                    squares[i].removeEventListener('click', click)
+        
+                     }   
+                
+                }
+            else {string='ходят нолики'}
+        }
+
+        else {this.innerHTML='O';
+                olog[Math.ceil(popitka/2)]=+this.getAttribute('data-id');
+                popitka++;
+                if (foo(win,olog)) 
+                    {string='нолики выиграли'
+                    oWins++;
+                    oWin.innerHTML=`нолики выиграли партий:${oWins}`;
+                    for (let i=0; i<squares.length; i++) 
+                        {
+                        squares[i].removeEventListener('click', click)
+                        } 
+                    }
+                else{string='ходят крестики'}}
+
+                winMessage.innerHTML=string;
+    }
+
+
+   function foo(arrayTargetWin, arrayCheck){
+       for (let i=0; i<arrayTargetWin.length;i++){//перебор массивов выигрыша
+                if (arrayCheck.includes(arrayTargetWin[i][0])&&arrayCheck.includes(arrayTargetWin[i][1])&&arrayCheck.includes(arrayTargetWin[i][2])) 
+                {return true}}
+       return false
+   }
+
+   
+
+</script>
+</body>
+</html>
