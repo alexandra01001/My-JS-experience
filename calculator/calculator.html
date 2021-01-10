@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="calculator.css">
+    <title>Document</title>
+</head>
+<body>
+
+  <div class='calculator'>
+
+      <input id='string' type="text" value = '2'> 
+      <div id='clear'>c</div> <br>
+      <div class='button' data-text='1'>1</div>
+      <div class='button' data-text='2'>2</div>
+      <div class='button' data-text='3'>3</div>
+      <div class='button' data-text='/'>/</div> <br>
+      <div class='button' data-text='4'>4</div>
+      <div class='button' data-text='5'>5</div>
+      <div class='button' data-text='6'>6</div>
+      <div class='button' data-text='*'>*</div> <br>
+      <div class='button' data-text='7'>7</div>
+      <div class='button' data-text='8'>8</div>
+      <div class='button' data-text='9'>9</div>
+      <div class='button' data-text='0'>0</div> <br>
+      <div id='ravno' data-text='='>=</div>
+      <div class='button' data-text='+'>+</div>
+      <div class='button' data-text='.'>.</div>
+      <div class='button' data-text='-'>-</div>
+
+  </div>
+
+  <script>
+      let string = document.getElementById('string');
+      let clear = document.getElementById('clear');
+      let buttons = document.getElementsByClassName('button');
+      let ravno = document.getElementById('ravno')
+
+      clear.addEventListener('click', ()=>string.value = '')
+
+
+      for (let i=0; i<buttons.length; i++){
+          buttons[i].addEventListener('click', ()=>string.value+=buttons[i].getAttribute('data-text'))}
+
+
+    
+
+      ravno.addEventListener('click', func);
+
+      function func(){
+          string.value = eval(string.value)
+      }
+  </script>
+        
+  
+</body>
+</html>
