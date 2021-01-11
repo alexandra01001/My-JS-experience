@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="game.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ИГРА НАЙДИ ЧИСЛО</h1>
+    <div class="container">
+        <table>
+            <tr>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+            </tr>
+            <tr>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+            </tr>
+            <tr>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+            </tr>
+            <tr>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+            </tr>
+            <tr>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+                <td style='background-color: blanchedalmond;'></td>
+            </tr>
+        </table>
+        <button id='begin' >Начать с начала</button>
+    </div>
+
+        <span>Времени осталось: <p id='timer'>60</p> сек </span>
+
+    <script>
+        var squares = document.getElementsByTagName('td');
+        var begin=document.getElementById('begin');
+        begin.addEventListener('click', start);
+        var time;
+
+        function startTimer()
+        {
+            let timer=document.getElementById('timer');
+            let x=60;
+            time = window.setInterval(foo, 1000)
+            function foo()
+                {
+                    if (x==0)
+                    {
+                        alert('Вы проиграли!');
+                        window.clearInterval(time);
+                    }
+                    else { timer.innerHTML=x--;}
+                }
+        }
+
+        function start() 
+        {   window.clearInterval(time);
+            startTimer();
+            let numbers=[];
+            for (let i=1; i<26;i++)
+            {
+                numbers[i-1]=i;
+            }
+            
+            for (let i=0; i<25; i++)
+            {
+                var rand = Math.floor(Math.random() * numbers.length);  
+                squares[i].innerHTML=numbers[rand];
+                squares[i].style.backgroundColor='blanchedalmond';
+                numbers.splice(rand,1);
+                squares[i].addEventListener('click', find)
+            }
+
+
+        }
+             
+            let j=1;
+            function find()
+            {
+                if (+this.innerHTML==j) 
+                {
+                    this.style.backgroundColor='red';
+                    this.removeEventListener('click', find);
+                    j++;
+                }
+                if (+this.innerHTML==25)
+                    {
+                    alert('вы выиграли!!!');
+                    window.clearInterval(time); 
+                    }
+
+            }
+
+
+   
+            
+                
+
+            
+
+
+
+
+        
+
+        
+
+    </script>
+</body>
+</html>
